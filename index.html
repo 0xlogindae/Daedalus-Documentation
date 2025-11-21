@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>2839 Daedalus Programming Documentation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #0a0a0a;
+  color: #eee;
+  overflow-x: hidden;
+  display: flex;
+}
+
+.bg-wrap {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1;
+  filter: blur(50px);
+}
+.blob,
+.blob2,
+.blob3 {
+  position: absolute;
+  border-radius: 40%;
+}
+.blob {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(
+    circle,
+    rgba(130, 70, 255, 0.45),
+    rgba(50, 20, 120, 0.25)
+  );
+  animation: move1 18s infinite ease-in-out alternate;
+}
+.blob2 {
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(
+    circle,
+    rgba(60, 180, 255, 0.45),
+    rgba(20, 60, 120, 0.25)
+  );
+  animation: move2 22s infinite ease-in-out alternate;
+}
+.blob3 {
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(
+    circle,
+    rgba(160, 80, 255, 0.4),
+    rgba(80, 30, 170, 0.2)
+  );
+  animation: move3 26s infinite ease-in-out alternate;
+}
+
+@keyframes move1 {
+  0% {
+    transform: translate(-20%, -10%) scale(1);
+  }
+  50% {
+    transform: translate(10%, 20%) scale(1.2);
+  }
+  100% {
+    transform: translate(-10%, 5%) scale(1.1);
+  }
+}
+@keyframes move2 {
+  0% {
+    transform: translate(50%, 10%) scale(1);
+  }
+  50% {
+    transform: translate(20%, -20%) scale(1.15);
+  }
+  100% {
+    transform: translate(40%, 5%) scale(1.05);
+  }
+}
+@keyframes move3 {
+  0% {
+    transform: translate(0%, 60%) scale(1);
+  }
+  50% {
+    transform: translate(-20%, 30%) scale(1.25);
+  }
+  100% {
+    transform: translate(10%, 45%) scale(1.1);
+  }
+}
+
+.glass {
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+  position: relative;
+  padding: 40px;
+  margin-bottom: 20px;
+  width:60vw;
+  margin-right: 20px;
+}
+
+.glassMenu {
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+  position: relative;
+  padding: 40px;
+  margin-bottom: 20px;
+  width:40vw;
+}
+
+nav {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  bottom: 20px;
+  width: 250px;
+  padding: 20px;
+  overflow-y: auto;
+}
+nav a {
+  display: block;
+  padding: 10px 0;
+  color: #b6d9ff;
+  text-decoration: none;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+}
+nav a:hover {
+  color: #fff;
+  transform: translateX(3px);
+}
+nav h2 {
+  color: #fff;
+  margin-top: 0;
+}
+
+main {
+  padding-left: 40px;
+  padding-top: 20px;
+}
+section h1 {
+  margin: 0 0 20px;
+  font-size: 28px;
+  color: #fff;
+}
+section h2 {
+  margin: 10px 0;
+  color: #cfe4ff;
+}
+.info-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  backdrop-filter: blur(15px);
+}
+.info-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+pre {
+  position: relative;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 15px;
+  overflow-x: auto;
+  margin-top: 25px;
+}
+code {
+  color: #d9e8ff;
+  font-size: 14px;
+  white-space: pre;
+}
+
+mark {
+  color: #d9e8ff;
+  font-size: 14px;
+  background-color:#ffffff29;
+  padding:10px;
+  border-radius:10px;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 4px 10px;
+  font-size: 12px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.info-popup-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.info-popup {
+  width: 500px;
+  max-width: 85vw;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 30px;
+  color: #fff;
+  text-align: left;
+  backdrop-filter: blur(20px);
+}
+.close-info {
+  margin-top: 20px;
+  padding: 8px 15px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  width:40px;
+}
+.close-info:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+</style>
+</head>
+<body>
+
+<div class="bg-wrap">
+  <div class="blob" style="top:-10%;left:-10%"></div>
+  <div class="blob2" style="top:20%;left:40%"></div>
+  <div class="blob3" style="top:40%;left:-5%"></div>
+</div>
+
+<nav class="glass" style="300px;">
+  <h2>2839 Docs</h2>
+  <a href="#intro">Introduction</a>
+  <a href="#setup">Getting Started</a>
+  <a href="#general">FRC Programming</a>
+  <a href="#hardware">Harware Programming</a>
+  <a href="#architecture">Robot Code Architecture</a>
+  <a href="#subsystems">Subsystems</a>
+  <a href="#commands">Commands</a>
+  <a href="#controller">Controller Programming</a>
+  <a href="#swervegen">Generate Swerve</a>
+  <a href="#intake">Making an Intake</a>
+  <a href="#elevator">Making an Elevator</a>
+  <a href="#autonomous">Autonomous</a>
+  <a href="#leaveanote">Leave a Note</a>
+</nav>
+
+<main>
+
+<section id="intro" class="glass">
+  <div class="info-btn" data-info="intro">Info</div>
+  <h1>Introduction</h1>
+</section>
+
+<section id="setup" class="glass">
+  <div class="info-btn" data-info="setup">Info</div>
+  <h1>Getting Started</h1>
+
+  <pre><button class="copy-btn">Copy</button><code>sudo rm -rf /</code></pre>
+</section>
+
+<section id="general" class="glass">
+  <div class="info-btn" data-info="general">Info</div>
+  <h1>FRC Programming</h1>
+</section>
+
+<section id="hardware" class="glass">
+  <div class="info-btn" data-info="hardware">Info</div>
+  <h1>Hardware Programming</h1>
+</section>
+
+<section id="blank" class="glass">
+  <p>... (Add the rest of the sections when I am not as tired)</p>
+</section>
+
+<section id="leaveanote" class="glass">
+  <div class="info-btn" data-info="leaveanote">Info</div>
+  <h1>Leave your Mark</h1>
+  <p>Every programmer can add a comment with their name and graduating year. This will be a fun reminder that a history of programmers did the same thing awhile ago.</p>
+  <br>
+  <!-- This should be how one line looks -->
+  <mark><strong style="margin-right:20px;">2025</strong>"The one who listens is valued." - <strong>Killian Zabinsky.</strong></mark><br>
+  
+</section>
+
+</main>
+
+<div class="info-popup-bg" id="infoPopupBg">
+  <div class="info-popup" id="infoPopup">
+    <div id="infoText"></div>
+    <div class="close-info" onclick="closeInfo()">Close</div>
+  </div>
+</div>
+
+<script>
+document.querySelectorAll(".copy-btn").forEach(btn=>{
+  btn.onclick=()=>{
+    const code=btn.nextElementSibling.innerText;
+    navigator.clipboard.writeText(code);
+    btn.innerText="Copied";
+    setTimeout(()=>btn.innerText="Copy",800);
+  };
+});
+
+const infoData={
+  intro:"to be determined",
+  setup:"to be determined",
+  leaveanote:"Every programmer can add a comment with their name and graduating year. This will be a fun reminder that a history of programmers did the same thing awhile ago."
+};
+
+document.querySelectorAll(".info-btn").forEach(btn=>{
+  btn.onclick=()=>{
+    const key=btn.getAttribute("data-info");
+    document.getElementById("infoText").innerText=infoData[key]||"No info added yet.";
+    document.getElementById("infoPopupBg").style.display="flex";
+  };
+});
+
+function closeInfo(){
+  document.getElementById("infoPopupBg").style.display="none";
+}
+</script>
+
+</body>
+</html>
